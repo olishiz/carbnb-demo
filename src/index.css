@@ -259,6 +259,37 @@ section {
   margin: 0 auto;
 }
 
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.mobile-menu a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover {
+  color: var(--gold);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
@@ -284,6 +315,14 @@ section {
 
   .nav {
     display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
   }
 
   .section-header h2 {
