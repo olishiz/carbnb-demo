@@ -319,6 +319,23 @@ section {
   color: var(--gold);
 }
 
+/* Bottom Navigation */
+#root {
+  padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding-bottom: 70px;
+  }
+}
+
+@media (min-width: 769px) {
+  nav[style*="position: fixed"][style*="bottom: 0"] {
+    display: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
@@ -356,6 +373,10 @@ section {
 
   .section-header h2 {
     font-size: 36px;
+  }
+
+  .header {
+    display: none;
   }
 }
 

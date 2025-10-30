@@ -5,6 +5,7 @@ import LimousinesNew from './components/LimousinesNew'
 import HowItWorks from './components/HowItWorks'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import BottomNav from './components/BottomNav'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <HowItWorks />
       <FAQ />
       <Footer />
+      <BottomNav />
     </div>
   )
 }
