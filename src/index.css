@@ -291,6 +291,47 @@ section {
   }
 }
 
+/* Range Slider Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+}
+
 /* Loading animation */
 @keyframes fadeIn {
   from {
