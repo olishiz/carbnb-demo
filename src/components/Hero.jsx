@@ -12,7 +12,7 @@ const Hero = () => {
     <section className="hero fade-in">
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge">🚗 Premium Limousine Service</div>
+          <div className="hero-badge">Premium Limousine Service</div>
 
           <h1>
             Your Luxury Limousine <br/>

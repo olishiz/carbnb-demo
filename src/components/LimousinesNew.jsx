@@ -159,7 +159,7 @@ const LimousinesNew = () => {
   )
 
   return (
-    <section id="limousines" style={{ background: 'var(--bg-dark)', padding: '100px 24px' }}>
+    <section id="limousines" style={{ background: 'var(--bg-elevated)', padding: '100px 24px' }}>
       <div className="container" style={{ maxWidth: '1400px' }}>
         <div className="section-header">
           <h2>Premium <span className="gradient-text">Limousine</span> Fleet</h2>
@@ -273,7 +273,7 @@ const LimousinesNew = () => {
                 height: '240px',
                 overflow: 'hidden',
                 position: 'relative',
-                background: 'var(--bg-darker)'
+                background: 'var(--bg-main)'
               }}>
                 <img
                   src={limo.image}
@@ -318,11 +318,13 @@ const LimousinesNew = () => {
                     display: 'flex',
                     gap: '16px',
                     fontSize: '13px',
-                    color: 'var(--text-muted)'
+                    color: 'var(--text-tertiary)'
                   }}>
-                    <span>👥 {limo.capacity} passengers</span>
-                    <span>⚡ {limo.fuel}</span>
-                    <span>🔄 {limo.transmission}</span>
+                    <span>{limo.capacity} passengers</span>
+                    <span>•</span>
+                    <span>{limo.fuel}</span>
+                    <span>•</span>
+                    <span>{limo.transmission}</span>
                   </div>
                 </div>
 
@@ -337,7 +339,7 @@ const LimousinesNew = () => {
                     <span key={idx} style={{
                       fontSize: '12px',
                       padding: '5px 10px',
-                      background: 'var(--bg-darker)',
+                      background: 'var(--bg-main)',
                       border: '1px solid var(--border)',
                       borderRadius: '6px',
                       color: 'var(--text-secondary)',
@@ -350,7 +352,7 @@ const LimousinesNew = () => {
                     <span style={{
                       fontSize: '12px',
                       padding: '5px 10px',
-                      background: 'var(--bg-darker)',
+                      background: 'var(--bg-main)',
                       border: '1px solid var(--border)',
                       borderRadius: '6px',
                       color: 'var(--text-secondary)',
@@ -372,7 +374,7 @@ const LimousinesNew = () => {
                   <div>
                     <div style={{
                       fontSize: '12px',
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-tertiary)',
                       marginBottom: '4px'
                     }}>
                       From
@@ -386,7 +388,7 @@ const LimousinesNew = () => {
                       RM{calculatePrice(limo.basePrice, 12).toLocaleString()}
                       <span style={{
                         fontSize: '14px',
-                        color: 'var(--text-muted)',
+                        color: 'var(--text-tertiary)',
                         fontWeight: '500'
                       }}>
                         /mo
@@ -413,7 +415,6 @@ const LimousinesNew = () => {
             padding: '80px 20px',
             color: 'var(--text-secondary)'
           }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
             <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>No limousines found</h3>
             <p style={{ fontSize: '15px' }}>Try adjusting your search or filters</p>
           </div>
@@ -475,19 +476,19 @@ const LimousinesNew = () => {
               borderRadius: '12px'
             }}>
               <div>
-                <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '4px' }}>Capacity</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '4px' }}>Capacity</div>
                 <div style={{ fontSize: '16px', fontWeight: '600' }}>{selectedLimo.capacity} passengers</div>
               </div>
               <div>
-                <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '4px' }}>Year</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '4px' }}>Year</div>
                 <div style={{ fontSize: '16px', fontWeight: '600' }}>{selectedLimo.year}</div>
               </div>
               <div>
-                <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '4px' }}>Fuel</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '4px' }}>Fuel</div>
                 <div style={{ fontSize: '16px', fontWeight: '600' }}>{selectedLimo.fuel}</div>
               </div>
               <div>
-                <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '4px' }}>Transmission</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '4px' }}>Transmission</div>
                 <div style={{ fontSize: '16px', fontWeight: '600' }}>{selectedLimo.transmission}</div>
               </div>
             </div>
@@ -499,7 +500,7 @@ const LimousinesNew = () => {
                   <span key={idx} style={{
                     fontSize: '13px',
                     padding: '6px 12px',
-                    background: 'var(--bg-darker)',
+                    background: 'var(--bg-main)',
                     border: '1px solid var(--border)',
                     borderRadius: '8px',
                     color: 'var(--text-secondary)'
