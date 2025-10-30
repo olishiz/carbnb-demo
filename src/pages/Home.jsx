@@ -195,7 +195,7 @@ const Home = () => {
       {/* CTA Section */}
       <section style={{
         background: 'var(--bg-elevated)',
-        padding: '80px 24px',
+        padding: '80px 24px 120px',
         textAlign: 'center'
       }}>
         <div className="container">

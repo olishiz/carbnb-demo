@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  const handleHomeScroll = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) element.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) element.scrollIntoView({ behavior: 'smooth' })
     }
     setMobileMenuOpen(false)
   }
@@ -15,23 +24,16 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <a href="/" className="logo">Carbnb</a>
+          <Link to="/" className="logo">Carbnb</Link>
 
           {/* Desktop Nav */}
           <nav className="nav">
-            <a href="#limousines" onClick={(e) => { e.preventDefault(); scrollToSection('limousines') }}>
-              Limousines
-            </a>
-            <a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works') }}>
+            <Link to="/">Home</Link>
+            <Link to="/cars">Cars</Link>
+            <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
-            <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollToSection('pricing') }}>
-              Pricing
-            </a>
-            <a href="#faq" onClick={(e) => { e.preventDefault(); scrollToSection('faq') }}>
-              FAQ
-            </a>
-            <button className="btn btn-primary" onClick={() => scrollToSection('limousines')}>
+            <button className="btn btn-primary" onClick={() => navigate('/cars')}>
               Get Started
             </button>
           </nav>
@@ -46,7 +48,7 @@ const Header = () => {
               display: 'block',
               width: '25px',
               height: '3px',
-              background: 'var(--gold)',
+              background: 'var(--text-primary)',
               margin: '5px 0',
               transition: 'all 0.3s ease'
             }}></span>
@@ -54,7 +56,7 @@ const Header = () => {
               display: 'block',
               width: '25px',
               height: '3px',
-              background: 'var(--gold)',
+              background: 'var(--text-primary)',
               margin: '5px 0',
               transition: 'all 0.3s ease'
             }}></span>
@@ -62,7 +64,7 @@ const Header = () => {
               display: 'block',
               width: '25px',
               height: '3px',
-              background: 'var(--gold)',
+              background: 'var(--text-primary)',
               margin: '5px 0',
               transition: 'all 0.3s ease'
             }}></span>
@@ -72,19 +74,12 @@ const Header = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="mobile-menu">
-            <a href="#limousines" onClick={(e) => { e.preventDefault(); scrollToSection('limousines') }}>
-              Limousines
-            </a>
-            <a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works') }}>
+            <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/cars" onClick={() => setMobileMenuOpen(false)}>Cars</Link>
+            <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
-            <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollToSection('pricing') }}>
-              Pricing
-            </a>
-            <a href="#faq" onClick={(e) => { e.preventDefault(); scrollToSection('faq') }}>
-              FAQ
-            </a>
-            <button className="btn btn-primary" onClick={() => scrollToSection('limousines')} style={{ width: '100%' }}>
+            <button className="btn btn-primary" onClick={() => { navigate('/cars'); setMobileMenuOpen(false) }} style={{ width: '100%' }}>
               Get Started
             </button>
           </div>

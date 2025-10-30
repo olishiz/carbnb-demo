@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 8px;
   font-size: 15px;
-  color: var(--text-light);
+  color: var(--text-secondary);
 }
 
 .hero-feature::before {
@@ -303,20 +303,20 @@ section {
   gap: 16px;
   padding: 24px 0;
   margin-top: 20px;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  border-top: 1px solid var(--border);
 }
 
 .mobile-menu a {
-  color: var(--text-light);
+  color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid var(--border);
   transition: color 0.3s;
 }
 
 .mobile-menu a:hover {
-  color: var(--gold);
+  color: var(--text-primary);
 }
 
 /* Bottom Navigation */
@@ -338,17 +338,24 @@ section {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 100px 20px 60px;
+  }
+
   .hero h1 {
-    font-size: 48px;
+    font-size: 36px;
   }
 
   .hero h2 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .hero-stats {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
+    margin-top: 60px;
+    padding-top: 40px;
   }
 
   .hero-cta {
@@ -372,11 +379,27 @@ section {
   }
 
   .section-header h2 {
-    font-size: 36px;
+    font-size: 28px;
+  }
+
+  .section-header p {
+    font-size: 15px;
   }
 
   .header {
     display: none;
+  }
+
+  section {
+    padding: 60px 20px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .stat-number {
+    font-size: 36px;
   }
 }
 
@@ -394,31 +417,31 @@ input[type="range"]::-webkit-slider-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--primary);
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 input[type="range"]::-moz-range-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--primary);
   cursor: pointer;
   border: none;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Loading animation */

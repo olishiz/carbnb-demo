@@ -159,7 +159,7 @@ const Cars = () => {
   )
 
   return (
-    <section style={{ background: 'var(--bg-main)', padding: '100px 24px', minHeight: 'calc(100vh - 70px)' }}>
+    <section style={{ background: 'var(--bg-main)', padding: '100px 24px 120px', minHeight: 'calc(100vh - 70px)' }}>
       <div className="container" style={{ maxWidth: '1400px' }}>
         <div className="section-header">
           <h2>Premium Limousine Fleet</h2>
@@ -243,7 +243,7 @@ const Cars = () => {
         {/* Limousine Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 380px), 1fr))',
           gap: '24px'
         }}>
           {filteredLimousines.map((limo) => (
