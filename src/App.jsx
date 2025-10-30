@@ -1,23 +1,24 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import LimousinesNew from './components/LimousinesNew'
-import HowItWorks from './components/HowItWorks'
-import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import BottomNav from './components/BottomNav'
+import Home from './pages/Home'
+import Cars from './pages/Cars'
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Hero />
-      <LimousinesNew />
-      <HowItWorks />
-      <FAQ />
-      <Footer />
-      <BottomNav />
-    </div>
+    <Router basename="/carbnb-demo">
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cars" element={<Cars />} />
+        </Routes>
+        <Footer />
+        <BottomNav />
+      </div>
+    </Router>
   )
 }
 
