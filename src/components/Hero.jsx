@@ -12,14 +12,15 @@ const Hero = () => {
     <section className="hero fade-in">
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge">Premium Luxury Experience</div>
+          <div className="hero-badge">🚗 Premium Limousine Service</div>
 
           <h1>
-            All-in-One <span className="gold-text">Limousine</span> Subscription
+            Your Luxury Limousine <br/>
+            <span className="gradient-text">Subscription Service</span>
           </h1>
 
           <h2>
-            Subscribe 1–60 months, swap anytime
+            Professional chauffeur-driven limousines. Subscribe from 1-60 months with ultimate flexibility.
           </h2>
 
           <div className="hero-features">
