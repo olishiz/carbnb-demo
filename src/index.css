@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Modern Color Palette */
-  --primary: #1E40AF;
-  --primary-hover: #1E3A8A;
-  --primary-light: #3B82F6;
-  --secondary: #0EA5E9;
-  --accent: #6366F1;
+  /* Black & White Color Palette */
+  --primary: #000000;
+  --primary-hover: #1A1A1A;
+  --primary-light: #333333;
+  --secondary: #666666;
+  --accent: #000000;
 
   /* Backgrounds */
   --bg-main: #FFFFFF;
   --bg-elevated: #F9FAFB;
   --bg-card: #FFFFFF;
   --bg-hover: #F3F4F6;
-  --bg-dark: #111827;
+  --bg-dark: #000000;
 
   /* Borders */
   --border: #E5E7EB;
   --border-light: #F3F4F6;
 
   /* Text Colors */
-  --text-primary: #111827;
+  --text-primary: #000000;
   --text-secondary: #6B7280;
   --text-tertiary: #9CA3AF;
   --text-white: #FFFFFF;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
-  --gradient-secondary: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
+  --gradient-primary: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --gradient-secondary: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
 }
 
 * {

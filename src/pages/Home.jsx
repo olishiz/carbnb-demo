@@ -23,7 +23,7 @@ const Home = () => {
           right: 0,
           width: '50%',
           height: '100%',
-          background: 'radial-gradient(circle at top right, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at top right, rgba(0, 0, 0, 0.03) 0%, transparent 70%)',
           pointerEvents: 'none'
         }}></div>
 
@@ -35,10 +35,10 @@ const Home = () => {
               alignItems: 'center',
               gap: '8px',
               padding: '8px 16px',
-              background: 'rgba(30, 64, 175, 0.08)',
+              background: 'rgba(0, 0, 0, 0.05)',
               borderRadius: '100px',
               marginBottom: '32px',
-              border: '1px solid rgba(30, 64, 175, 0.1)'
+              border: '1px solid rgba(0, 0, 0, 0.1)'
             }}>
               <div style={{
                 width: '8px',
@@ -106,16 +106,16 @@ const Home = () => {
                   borderRadius: '12px',
                   cursor: 'pointer',
                   fontFamily: 'Inter, sans-serif',
-                  boxShadow: '0 4px 14px rgba(30, 64, 175, 0.3)',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)',
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(30, 64, 175, 0.4)'
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.2)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(30, 64, 175, 0.3)'
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.15)'
                 }}
               >
                 Browse Fleet
@@ -139,7 +139,7 @@ const Home = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'var(--primary)'
-                  e.currentTarget.style.background = 'rgba(30, 64, 175, 0.05)'
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.03)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'var(--border)'
@@ -219,32 +219,26 @@ const Home = () => {
           }}>
             {[
               {
-                icon: '🚗',
                 title: 'Professional Chauffeur',
                 description: 'Experienced, vetted drivers at your service 24/7'
               },
               {
-                icon: '💰',
                 title: 'All-Inclusive Pricing',
                 description: 'Insurance, maintenance, and fuel all covered'
               },
               {
-                icon: '📅',
                 title: 'Flexible Terms',
                 description: 'Subscribe from 1 to 60 months with no commitment'
               },
               {
-                icon: '🔄',
                 title: 'Easy Swaps',
                 description: 'Change vehicles anytime to suit your needs'
               },
               {
-                icon: '⚡',
                 title: '24h Approval',
                 description: 'Get approved and driving within 24 hours'
               },
               {
-                icon: '🎯',
                 title: 'Doorstep Delivery',
                 description: 'We bring your limousine directly to you'
               }
@@ -270,11 +264,12 @@ const Home = () => {
                 }}
               >
                 <div style={{
-                  fontSize: '40px',
-                  marginBottom: '16px'
-                }}>
-                  {feature.icon}
-                </div>
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'var(--primary)',
+                  marginBottom: '20px'
+                }}></div>
                 <h3 style={{
                   fontSize: '20px',
                   fontWeight: '700',
@@ -335,19 +330,19 @@ const Home = () => {
                 step: '01',
                 title: 'Choose Your Vehicle',
                 description: 'Browse our premium fleet and select the perfect limousine for your needs. Compare features, pricing, and availability.',
-                color: '#1E40AF'
+                color: '#000000'
               },
               {
                 step: '02',
                 title: 'Complete Subscription',
                 description: 'Fill out a simple online form and get instant approval. Choose your subscription term and start date.',
-                color: '#3B82F6'
+                color: '#1A1A1A'
               },
               {
                 step: '03',
                 title: 'Start Riding',
                 description: 'Your limousine arrives with a professional chauffeur at your doorstep. Enjoy the luxury, we handle everything else.',
-                color: '#0EA5E9'
+                color: '#333333'
               }
             ].map((step, idx) => (
               <div key={idx} style={{ position: 'relative' }}>
@@ -402,16 +397,16 @@ const Home = () => {
                 borderRadius: '12px',
                 cursor: 'pointer',
                 fontFamily: 'Inter, sans-serif',
-                boxShadow: '0 4px 14px rgba(30, 64, 175, 0.3)',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)',
                 transition: 'all 0.2s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(30, 64, 175, 0.4)'
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.2)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 4px 14px rgba(30, 64, 175, 0.3)'
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.15)'
               }}
             >
               View Our Fleet
@@ -601,7 +596,7 @@ const Home = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%)',
           pointerEvents: 'none'
         }}></div>
 
