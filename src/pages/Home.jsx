@@ -5,163 +5,275 @@ const Home = () => {
   const navigate = useNavigate()
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="hero fade-in">
-        <div className="container">
-          <div className="hero-content">
-            <div className="hero-badge">Premium Limousine Service</div>
+    <div style={{ background: 'var(--bg-main)' }}>
+      {/* Hero Section - Modern & Bold */}
+      <section style={{
+        minHeight: '90vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '120px 24px 80px',
+        background: 'linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Background Pattern */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: '50%',
+          height: '100%',
+          background: 'radial-gradient(circle at top right, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
+          pointerEvents: 'none'
+        }}></div>
 
-            <h1>
-              Your Luxury Limousine <br/>
-              <span className="gradient-text">Subscription Service</span>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ maxWidth: '800px' }}>
+            {/* Badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              background: 'rgba(30, 64, 175, 0.08)',
+              borderRadius: '100px',
+              marginBottom: '32px',
+              border: '1px solid rgba(30, 64, 175, 0.1)'
+            }}>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: 'var(--primary)'
+              }}></div>
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: 'var(--primary)',
+                letterSpacing: '0.3px'
+              }}>
+                Malaysia's Premier Limousine Service
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 style={{
+              fontSize: 'clamp(40px, 6vw, 72px)',
+              fontWeight: '900',
+              lineHeight: '1.1',
+              marginBottom: '24px',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.03em'
+            }}>
+              Your Luxury Ride,{' '}
+              <span style={{
+                background: 'var(--gradient-primary)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>
+                Simplified
+              </span>
             </h1>
 
-            <h2>
-              Professional chauffeur-driven limousines. Subscribe from 1-60 months with ultimate flexibility.
-            </h2>
+            {/* Subheadline */}
+            <p style={{
+              fontSize: '20px',
+              lineHeight: '1.6',
+              color: 'var(--text-secondary)',
+              marginBottom: '40px',
+              maxWidth: '600px'
+            }}>
+              Subscribe to premium limousines with professional chauffeurs. All-inclusive pricing, flexible terms, zero hassle.
+            </p>
 
-            <div className="hero-features">
-              <div className="hero-feature">Professional Chauffeur</div>
-              <div className="hero-feature">Full Insurance Coverage</div>
-              <div className="hero-feature">Maintenance Included</div>
-              <div className="hero-feature">Doorstep Delivery</div>
-              <div className="hero-feature">No Down Payment</div>
-              <div className="hero-feature">24h Approval</div>
-            </div>
-
-            <div className="hero-cta">
-              <button className="btn btn-primary" onClick={() => navigate('/cars')}>
-                Browse Limousines
-              </button>
-              <button className="btn btn-secondary" onClick={() => {
-                const element = document.getElementById('how-it-works')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
-              }}>
-                How It Works
-              </button>
-            </div>
-
-            <div className="hero-stats">
-              <div className="stat">
-                <div className="stat-number">1-60</div>
-                <div className="stat-label">Months Flexibility</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">24h</div>
-                <div className="stat-label">Quick Approval</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">0%</div>
-                <div className="stat-label">Down Payment</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">40%</div>
-                <div className="stat-label">Save Year 1</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section style={{ background: 'var(--bg-elevated)', padding: '80px 24px' }}>
-        <div className="container">
-          <div className="section-header">
-            <h2>Why Choose Carbnb</h2>
-            <p>All-inclusive limousine subscription with no hidden costs</p>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '32px',
-            marginTop: '48px'
-          }}>
-            {[
-              { title: 'Professional Chauffeur', desc: 'Experienced drivers at your service 24/7' },
-              { title: 'All-Inclusive Package', desc: 'Insurance, maintenance, and road tax included' },
-              { title: 'Flexible Subscription', desc: 'Subscribe from 1 to 60 months, cancel anytime' },
-              { title: 'No Down Payment', desc: 'Start your subscription without upfront costs' },
-              { title: 'Doorstep Delivery', desc: 'We bring the limousine directly to you' },
-              { title: 'Swap Anytime', desc: 'Change vehicles based on your needs' }
-            ].map((feature, index) => (
-              <div
-                key={index}
+            {/* CTA Buttons */}
+            <div style={{
+              display: 'flex',
+              gap: '16px',
+              flexWrap: 'wrap',
+              marginBottom: '48px'
+            }}>
+              <button
+                onClick={() => navigate('/cars')}
                 style={{
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '16px',
-                  padding: '32px 24px',
-                  textAlign: 'center',
+                  padding: '16px 32px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  background: 'var(--gradient-primary)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif',
+                  boxShadow: '0 4px 14px rgba(30, 64, 175, 0.3)',
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.borderColor = 'var(--border-light)'
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.08)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(30, 64, 175, 0.4)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.borderColor = 'var(--border)'
-                  e.currentTarget.style.boxShadow = 'none'
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(30, 64, 175, 0.3)'
                 }}
               >
-                <h3 style={{
-                  fontSize: '18px',
-                  fontWeight: '700',
-                  marginBottom: '12px',
-                  color: 'var(--text-primary)'
-                }}>
-                  {feature.title}
-                </h3>
-                <p style={{
-                  fontSize: '14px',
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.6'
-                }}>
-                  {feature.desc}
-                </p>
-              </div>
-            ))}
+                Browse Fleet
+              </button>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('how-it-works')
+                  if (element) element.scrollIntoView({ behavior: 'smooth' })
+                }}
+                style={{
+                  padding: '16px 32px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  background: 'transparent',
+                  color: 'var(--text-primary)',
+                  border: '2px solid var(--border)',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--primary)'
+                  e.currentTarget.style.background = 'rgba(30, 64, 175, 0.05)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                Learn More
+              </button>
+            </div>
+
+            {/* Stats Row */}
+            <div style={{
+              display: 'flex',
+              gap: '48px',
+              flexWrap: 'wrap'
+            }}>
+              {[
+                { number: '12+', label: 'Luxury Vehicles' },
+                { number: '24/7', label: 'Support' },
+                { number: '100%', label: 'All-Inclusive' }
+              ].map((stat, idx) => (
+                <div key={idx}>
+                  <div style={{
+                    fontSize: '32px',
+                    fontWeight: '800',
+                    color: 'var(--primary)',
+                    marginBottom: '4px',
+                    letterSpacing: '-0.02em'
+                  }}>
+                    {stat.number}
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: 'var(--text-tertiary)',
+                    fontWeight: '500'
+                  }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" style={{ background: 'var(--bg-main)', padding: '80px 24px' }}>
+      {/* Value Propositions - Clean Grid */}
+      <section style={{
+        padding: '100px 24px',
+        background: 'var(--bg-main)'
+      }}>
         <div className="container">
-          <div className="section-header">
-            <h2>How It Works</h2>
-            <p>Three simple steps to your luxury limousine subscription</p>
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', marginBottom: '64px', maxWidth: '700px', margin: '0 auto 64px' }}>
+            <h2 style={{
+              fontSize: 'clamp(32px, 5vw, 48px)',
+              fontWeight: '800',
+              marginBottom: '16px',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em'
+            }}>
+              Everything You Need, Included
+            </h2>
+            <p style={{
+              fontSize: '18px',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.6'
+            }}>
+              No hidden fees. No surprises. Just pure luxury on your terms.
+            </p>
           </div>
 
+          {/* Features Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '48px',
-            marginTop: '48px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '32px'
           }}>
             {[
-              { number: '01', title: 'Choose Your Limousine', desc: 'Browse our premium fleet and select the perfect vehicle for your needs' },
-              { number: '02', title: 'Subscribe in Minutes', desc: 'Complete your subscription online with instant approval within 24 hours' },
-              { number: '03', title: 'Enjoy Your Ride', desc: 'Your limousine arrives with a professional chauffeur, fully insured and maintained' }
-            ].map((step, index) => (
-              <div key={index} style={{ textAlign: 'center' }}>
+              {
+                icon: '🚗',
+                title: 'Professional Chauffeur',
+                description: 'Experienced, vetted drivers at your service 24/7'
+              },
+              {
+                icon: '💰',
+                title: 'All-Inclusive Pricing',
+                description: 'Insurance, maintenance, and fuel all covered'
+              },
+              {
+                icon: '📅',
+                title: 'Flexible Terms',
+                description: 'Subscribe from 1 to 60 months with no commitment'
+              },
+              {
+                icon: '🔄',
+                title: 'Easy Swaps',
+                description: 'Change vehicles anytime to suit your needs'
+              },
+              {
+                icon: '⚡',
+                title: '24h Approval',
+                description: 'Get approved and driving within 24 hours'
+              },
+              {
+                icon: '🎯',
+                title: 'Doorstep Delivery',
+                description: 'We bring your limousine directly to you'
+              }
+            ].map((feature, idx) => (
+              <div
+                key={idx}
+                style={{
+                  padding: '32px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '16px',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)'
+                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.08)'
+                  e.currentTarget.style.borderColor = 'var(--primary-light)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                }}
+              >
                 <div style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  background: 'var(--primary)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 24px',
-                  fontSize: '32px',
-                  fontWeight: '800'
+                  fontSize: '40px',
+                  marginBottom: '16px'
                 }}>
-                  {step.number}
+                  {feature.icon}
                 </div>
                 <h3 style={{
                   fontSize: '20px',
@@ -169,56 +281,381 @@ const Home = () => {
                   marginBottom: '12px',
                   color: 'var(--text-primary)'
                 }}>
-                  {step.title}
+                  {feature.title}
                 </h3>
                 <p style={{
                   fontSize: '15px',
                   color: 'var(--text-secondary)',
-                  lineHeight: '1.6',
-                  maxWidth: '320px',
-                  margin: '0 auto'
+                  lineHeight: '1.6'
                 }}>
-                  {step.desc}
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - Step by Step */}
+      <section id="how-it-works" style={{
+        padding: '100px 24px',
+        background: 'var(--bg-elevated)'
+      }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <h2 style={{
+              fontSize: 'clamp(32px, 5vw, 48px)',
+              fontWeight: '800',
+              marginBottom: '16px',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em'
+            }}>
+              How It Works
+            </h2>
+            <p style={{
+              fontSize: '18px',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.6',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}>
+              Get your luxury limousine in three simple steps
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '48px',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}>
+            {[
+              {
+                step: '01',
+                title: 'Choose Your Vehicle',
+                description: 'Browse our premium fleet and select the perfect limousine for your needs. Compare features, pricing, and availability.',
+                color: '#1E40AF'
+              },
+              {
+                step: '02',
+                title: 'Complete Subscription',
+                description: 'Fill out a simple online form and get instant approval. Choose your subscription term and start date.',
+                color: '#3B82F6'
+              },
+              {
+                step: '03',
+                title: 'Start Riding',
+                description: 'Your limousine arrives with a professional chauffeur at your doorstep. Enjoy the luxury, we handle everything else.',
+                color: '#0EA5E9'
+              }
+            ].map((step, idx) => (
+              <div key={idx} style={{ position: 'relative' }}>
+                {/* Step Number */}
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '20px',
+                  background: step.color,
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '32px',
+                  fontWeight: '900',
+                  marginBottom: '24px',
+                  boxShadow: `0 8px 24px ${step.color}40`
+                }}>
+                  {step.step}
+                </div>
+
+                <h3 style={{
+                  fontSize: '24px',
+                  fontWeight: '700',
+                  marginBottom: '12px',
+                  color: 'var(--text-primary)'
+                }}>
+                  {step.title}
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.7'
+                }}>
+                  {step.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <button className="btn btn-primary" onClick={() => navigate('/cars')}>
+          {/* CTA Button */}
+          <div style={{ textAlign: 'center', marginTop: '64px' }}>
+            <button
+              onClick={() => navigate('/cars')}
+              style={{
+                padding: '18px 40px',
+                fontSize: '17px',
+                fontWeight: '600',
+                background: 'var(--gradient-primary)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif',
+                boxShadow: '0 4px 14px rgba(30, 64, 175, 0.3)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(30, 64, 175, 0.4)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(30, 64, 175, 0.3)'
+              }}
+            >
               View Our Fleet
             </button>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Featured Vehicles Preview */}
       <section style={{
-        background: 'var(--bg-elevated)',
-        padding: '80px 24px 120px',
-        textAlign: 'center'
+        padding: '100px 24px',
+        background: 'var(--bg-main)'
       }}>
         <div className="container">
-          <h2 style={{
-            fontSize: '42px',
-            fontWeight: '800',
-            marginBottom: '16px',
-            color: 'var(--text-primary)'
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginBottom: '48px',
+            flexWrap: 'wrap',
+            gap: '24px'
           }}>
-            Ready to Experience Luxury?
-          </h2>
-          <p style={{
-            fontSize: '18px',
-            color: 'var(--text-secondary)',
-            marginBottom: '32px',
-            maxWidth: '600px',
-            margin: '0 auto 32px'
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(32px, 5vw, 48px)',
+                fontWeight: '800',
+                marginBottom: '8px',
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em'
+              }}>
+                Featured Fleet
+              </h2>
+              <p style={{
+                fontSize: '18px',
+                color: 'var(--text-secondary)'
+              }}>
+                Premium limousines ready for subscription
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/cars')}
+              style={{
+                padding: '12px 24px',
+                fontSize: '15px',
+                fontWeight: '600',
+                background: 'transparent',
+                color: 'var(--primary)',
+                border: '2px solid var(--primary)',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--primary)'
+                e.currentTarget.style.color = 'white'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.color = 'var(--primary)'
+              }}
+            >
+              View All Vehicles →
+            </button>
+          </div>
+
+          {/* Vehicle Cards */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '32px'
           }}>
-            Start your limousine subscription today. No down payment, no hidden fees, just pure luxury.
-          </p>
-          <button className="btn btn-primary" style={{ fontSize: '16px', padding: '16px 40px' }} onClick={() => navigate('/cars')}>
-            Browse Limousines
-          </button>
+            {[
+              {
+                name: 'Mercedes-Benz S-Class',
+                price: 'RM7,200',
+                image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600',
+                type: 'Business Class'
+              },
+              {
+                name: 'Rolls-Royce Phantom',
+                price: 'RM13,500',
+                image: 'https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=600',
+                type: 'Ultra Luxury'
+              },
+              {
+                name: 'Stretched Lincoln',
+                price: 'RM10,800',
+                image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600',
+                type: 'Event Special'
+              }
+            ].map((car, idx) => (
+              <div
+                key={idx}
+                onClick={() => navigate('/cars')}
+                style={{
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)'
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.12)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
+                }}
+              >
+                <div style={{
+                  height: '240px',
+                  overflow: 'hidden',
+                  background: 'var(--bg-elevated)'
+                }}>
+                  <img
+                    src={car.image}
+                    alt={car.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                </div>
+                <div style={{ padding: '24px' }}>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: 'var(--primary)',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    {car.type}
+                  </div>
+                  <h3 style={{
+                    fontSize: '22px',
+                    fontWeight: '700',
+                    marginBottom: '12px',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {car.name}
+                  </h3>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '6px'
+                  }}>
+                    <span style={{
+                      fontSize: '28px',
+                      fontWeight: '800',
+                      color: 'var(--text-primary)'
+                    }}>
+                      {car.price}
+                    </span>
+                    <span style={{
+                      fontSize: '14px',
+                      color: 'var(--text-secondary)'
+                    }}>
+                      /month
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA - Bold */}
+      <section style={{
+        padding: '100px 24px',
+        background: 'var(--bg-dark)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Background Gradient */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+          pointerEvents: 'none'
+        }}></div>
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            maxWidth: '800px',
+            margin: '0 auto',
+            textAlign: 'center'
+          }}>
+            <h2 style={{
+              fontSize: 'clamp(36px, 6vw, 64px)',
+              fontWeight: '900',
+              marginBottom: '24px',
+              color: 'var(--text-white)',
+              lineHeight: '1.1',
+              letterSpacing: '-0.02em'
+            }}>
+              Ready to Experience Luxury?
+            </h2>
+            <p style={{
+              fontSize: '20px',
+              color: 'rgba(255, 255, 255, 0.8)',
+              marginBottom: '40px',
+              lineHeight: '1.6'
+            }}>
+              Join hundreds of satisfied clients who chose CarBnb for their luxury transportation needs.
+            </p>
+            <button
+              onClick={() => navigate('/cars')}
+              style={{
+                padding: '20px 48px',
+                fontSize: '18px',
+                fontWeight: '700',
+                background: 'white',
+                color: 'var(--primary)',
+                border: 'none',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif',
+                boxShadow: '0 8px 24px rgba(255, 255, 255, 0.2)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 255, 255, 0.3)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              Get Started Today
+            </button>
+          </div>
         </div>
       </section>
     </div>
