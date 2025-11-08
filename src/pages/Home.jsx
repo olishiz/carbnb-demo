@@ -1,20 +1,57 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const navigate = useNavigate()
+  const [visibleSections, setVisibleSections] = useState(new Set())
+  const sectionsRef = useRef([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set([...prev, entry.target.dataset.section]))
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    )
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const addToRefs = (el) => {
+    if (el && !sectionsRef.current.includes(el)) {
+      sectionsRef.current.push(el)
+    }
+  }
+
+  const getSectionStyle = (sectionName, delay = 0) => ({
+    opacity: visibleSections.has(sectionName) ? 1 : 0,
+    transform: visibleSections.has(sectionName) ? 'translateY(0)' : 'translateY(30px)',
+    transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`
+  })
 
   return (
     <div style={{ background: 'var(--bg-main)' }}>
       {/* Hero Section */}
-      <section style={{
-        minHeight: '85vh',
-        display: 'flex',
-        alignItems: 'center',
-        padding: '120px 24px 80px',
-        background: 'linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%)',
-        position: 'relative'
-      }}>
+      <section
+        ref={addToRefs}
+        data-section="hero"
+        style={{
+          minHeight: '85vh',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '120px 24px 80px',
+          background: 'linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%)',
+          position: 'relative',
+          ...getSectionStyle('hero')
+        }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
           <div style={{ maxWidth: '700px' }}>
             <h1 style={{
@@ -108,12 +145,16 @@ const Home = () => {
       </section>
 
       {/* As Featured In */}
-      <section style={{
-        padding: '60px 24px',
-        background: 'var(--bg-elevated)',
-        borderTop: '1px solid var(--border)',
-        borderBottom: '1px solid var(--border)'
-      }}>
+      <section
+        ref={addToRefs}
+        data-section="featured"
+        style={{
+          padding: '60px 24px',
+          background: 'var(--bg-elevated)',
+          borderTop: '1px solid var(--border)',
+          borderBottom: '1px solid var(--border)',
+          ...getSectionStyle('featured')
+        }}>
         <div className="container">
           <h3 style={{
             textAlign: 'center',
@@ -149,7 +190,14 @@ const Home = () => {
       </section>
 
       {/* Your Subscription Includes */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-main)' }}>
+      <section
+        ref={addToRefs}
+        data-section="subscription"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-main)',
+          ...getSectionStyle('subscription')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -220,7 +268,14 @@ const Home = () => {
       </section>
 
       {/* How CarBnb Works */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-elevated)' }}>
+      <section
+        ref={addToRefs}
+        data-section="howItWorks"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-elevated)',
+          ...getSectionStyle('howItWorks')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -321,7 +376,14 @@ const Home = () => {
       </section>
 
       {/* Popular Limousines */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-main)' }}>
+      <section
+        ref={addToRefs}
+        data-section="popularCars"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-main)',
+          ...getSectionStyle('popularCars')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -423,7 +485,14 @@ const Home = () => {
       </section>
 
       {/* Comparison Table */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-elevated)' }}>
+      <section
+        ref={addToRefs}
+        data-section="comparison"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-elevated)',
+          ...getSectionStyle('comparison')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -497,7 +566,14 @@ const Home = () => {
       </section>
 
       {/* Save Time, Save Money */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-main)' }}>
+      <section
+        ref={addToRefs}
+        data-section="saveTime"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-main)',
+          ...getSectionStyle('saveTime')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -559,12 +635,16 @@ const Home = () => {
       </section>
 
       {/* Save Up To */}
-      <section style={{
-        padding: '80px 24px',
-        background: 'var(--primary)',
-        color: 'white',
-        textAlign: 'center'
-      }}>
+      <section
+        ref={addToRefs}
+        data-section="saveBanner"
+        style={{
+          padding: '80px 24px',
+          background: 'var(--primary)',
+          color: 'white',
+          textAlign: 'center',
+          ...getSectionStyle('saveBanner')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 48px)',
@@ -586,7 +666,14 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-elevated)' }}>
+      <section
+        ref={addToRefs}
+        data-section="testimonials"
+        style={{
+          padding: '100px 24px',
+          background: 'var(--bg-elevated)',
+          ...getSectionStyle('testimonials')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
@@ -683,7 +770,14 @@ const Home = () => {
       </section>
 
       {/* FAQ */}
-      <section style={{ padding: '100px 24px 150px', background: 'var(--bg-main)' }}>
+      <section
+        ref={addToRefs}
+        data-section="faq"
+        style={{
+          padding: '100px 24px 150px',
+          background: 'var(--bg-main)',
+          ...getSectionStyle('faq')
+        }}>
         <div className="container">
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 42px)',
