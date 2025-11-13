@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import DatePicker from '../components/DatePicker'
+import Swal from 'sweetalert2'
 
 const Cars = () => {
   const [filter, setFilter] = useState('all')
@@ -8,6 +10,7 @@ const Cars = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showBooking, setShowBooking] = useState(false)
   const [bookingStep, setBookingStep] = useState(1) // 1: details, 2: personal info, 3: payment
+  const [startDate, setStartDate] = useState(null)
 
   const limousines = [
     {
@@ -410,6 +413,7 @@ const Cars = () => {
                   setCurrentImageIndex(0)
                   setShowBooking(false)
                   setBookingStep(1)
+                  setStartDate(null)
                 }}
                 style={{
                   height: '240px',
@@ -548,6 +552,7 @@ const Cars = () => {
                       setCurrentImageIndex(0)
                       setShowBooking(false)
                       setBookingStep(1)
+                      setStartDate(null)
                     }}
                   >
                     View Details
@@ -593,6 +598,7 @@ const Cars = () => {
             setSelectedLimo(null)
             setShowBooking(false)
             setBookingStep(1)
+            setStartDate(null)
           }}
         >
           <div
@@ -907,16 +913,11 @@ const Cars = () => {
                       <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500', color: 'var(--text-primary)' }}>
                         Start Date
                       </label>
-                      <input type="date" style={{
-                        width: '100%',
-                        padding: '12px',
-                        borderRadius: '8px',
-                        border: '1px solid var(--border)',
-                        fontSize: '15px',
-                        fontFamily: 'Inter, sans-serif',
-                        background: 'var(--bg-main)',
-                        color: 'var(--text-primary)'
-                      }} />
+                      <DatePicker
+                        selected={startDate}
+                        onSelect={setStartDate}
+                        placeholder="Select your start date"
+                      />
                     </div>
                     <div style={{ marginBottom: '20px' }}>
                       <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500', color: 'var(--text-primary)' }}>
@@ -1074,11 +1075,40 @@ const Cars = () => {
                       <button
                         className="btn btn-primary"
                         style={{ flex: 1 }}
-                        onClick={() => {
-                          alert(`Booking confirmed! Thank you for choosing ${selectedLimo.name}. We'll contact you within 24 hours to finalize your subscription.`)
+                        onClick={async () => {
+                          // Show loading
+                          Swal.fire({
+                            title: 'Processing Payment...',
+                            html: 'Please wait while we process your payment',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                              Swal.showLoading()
+                            }
+                          })
+
+                          // Simulate payment processing
+                          await new Promise(resolve => setTimeout(resolve, 2000))
+
+                          // Show success
+                          Swal.fire({
+                            icon: 'success',
+                            title: 'Booking Confirmed!',
+                            html: `<div style="text-align: center; padding: 10px;">
+                              <p style="font-size: 16px; margin-bottom: 12px;">Thank you for choosing <strong>${selectedLimo.name}</strong></p>
+                              <p style="color: #666; font-size: 14px;">We'll contact you within 24 hours to finalize your subscription and arrange delivery.</p>
+                            </div>`,
+                            confirmButtonText: 'Great!',
+                            confirmButtonColor: '#000000',
+                            customClass: {
+                              popup: 'swal-custom-popup',
+                              confirmButton: 'swal-custom-button'
+                            }
+                          })
+
                           setSelectedLimo(null)
                           setShowBooking(false)
                           setBookingStep(1)
+                          setStartDate(null)
                         }}
                       >
                         Confirm Payment
