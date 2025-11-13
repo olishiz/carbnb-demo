@@ -33,7 +33,7 @@ const Header = () => {
             <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
-            <button className="btn btn-primary" onClick={() => navigate('/cars')}>
+            <button className="btn btn-primary" onClick={() => navigate('/booking')}>
               Get Started
             </button>
           </nav>
@@ -79,7 +79,7 @@ const Header = () => {
             <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
-            <button className="btn btn-primary" onClick={() => { navigate('/cars'); setMobileMenuOpen(false) }} style={{ width: '100%' }}>
+            <button className="btn btn-primary" onClick={() => { navigate('/booking'); setMobileMenuOpen(false) }} style={{ width: '100%' }}>
               Get Started
             </button>
           </div>
