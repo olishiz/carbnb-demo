@@ -5,6 +5,20 @@ const Home = () => {
   const navigate = useNavigate()
   const [visibleSections, setVisibleSections] = useState(new Set())
   const sectionsRef = useRef([])
+  const [carouselIndex, setCarouselIndex] = useState(0)
+
+  const cars = [
+    { name: 'MERCEDES-BENZ S-CLASS 2024', price: 'RM 7,200', image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400' },
+    { name: 'BMW 7-SERIES 2024', price: 'RM 6,800', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400' },
+    { name: 'ROLLS-ROYCE PHANTOM 2024', price: 'RM 13,500', image: 'https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=400' },
+    { name: 'MAYBACH S-CLASS 2024', price: 'RM 11,700', image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400' },
+    { name: 'BENTLEY FLYING SPUR 2024', price: 'RM 12,600', image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=400' },
+    { name: 'STRETCHED LINCOLN 2023', price: 'RM 10,800', image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400' },
+    { name: 'CADILLAC ESCALADE 2024', price: 'RM 9,500', image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400' }
+  ]
+
+  const itemsPerPage = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1
+  const totalPages = Math.ceil(cars.length / itemsPerPage)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,9 +51,21 @@ const Home = () => {
     transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`
   })
 
+  const nextSlide = () => {
+    setCarouselIndex((prev) => (prev + 1) % totalPages)
+  }
+
+  const prevSlide = () => {
+    setCarouselIndex((prev) => (prev - 1 + totalPages) % totalPages)
+  }
+
+  const goToSlide = (index) => {
+    setCarouselIndex(index)
+  }
+
   return (
     <div style={{ background: 'var(--bg-main)' }}>
-      {/* Hero Section */}
+      {/* Hero Section with Split Layout */}
       <section
         ref={addToRefs}
         data-section="hero"
@@ -50,96 +76,122 @@ const Home = () => {
           padding: '120px 24px 80px',
           background: 'linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%)',
           position: 'relative',
+          overflow: 'hidden',
           ...getSectionStyle('hero')
         }}>
-        <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ maxWidth: '700px' }}>
-            <h1 style={{
-              fontSize: 'clamp(32px, 5vw, 56px)',
-              fontWeight: '800',
-              lineHeight: '1.15',
-              marginBottom: '24px',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em'
-            }}>
-              ALL-IN-ONE LIMOUSINE SUBSCRIPTION
-            </h1>
+        <div className="container" style={{ maxWidth: '1400px', width: '100%' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: window.innerWidth >= 768 ? '1fr 1fr' : '1fr',
+            gap: '48px',
+            alignItems: 'center'
+          }}>
+            {/* Left Content */}
+            <div>
+              <h1 style={{
+                fontSize: 'clamp(32px, 5vw, 56px)',
+                fontWeight: '800',
+                lineHeight: '1.15',
+                marginBottom: '24px',
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em'
+              }}>
+                All-in-one limousine subscription
+              </h1>
 
-            <p style={{
-              fontSize: '20px',
-              lineHeight: '1.6',
-              color: 'var(--text-secondary)',
-              marginBottom: '32px',
-              fontWeight: '500'
-            }}>
-              Better than buying or renting a limousine
-            </p>
+              <p style={{
+                fontSize: '20px',
+                lineHeight: '1.6',
+                color: 'var(--text-secondary)',
+                marginBottom: '32px',
+                fontWeight: '500'
+              }}>
+                Better than buying or renting a limousine
+              </p>
 
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-              marginBottom: '40px',
-              fontSize: '16px',
-              color: 'var(--text-primary)'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '20px' }}>✓</span>
-                <span>Subscribe for 1 - 60 months and swap cars when you want</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '20px' }}>✓</span>
-                <span>Insurance, road tax, maintenance & Concierge included</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '20px' }}>✓</span>
-                <span>No down payment and approval in 24 hours</span>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'flex',
-              gap: '32px',
-              marginBottom: '40px',
-              flexWrap: 'wrap'
-            }}>
-              <div>
-                <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>2,000+</div>
-                <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>happy customers</div>
-              </div>
-              <div>
-                <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>4.6 ⭐</div>
-                <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Google Reviews</div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => navigate('/cars')}
-              style={{
-                padding: '18px 40px',
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                marginBottom: '40px',
                 fontSize: '16px',
-                fontWeight: '700',
-                background: 'var(--primary)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontFamily: 'Inter, sans-serif',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--primary-hover)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--primary)'
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
-            >
-              Browse Cars
-            </button>
+                color: 'var(--text-primary)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>✓</span>
+                  <span>Subscribe for 1 - 60 months and swap cars when you want</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>✓</span>
+                  <span>Insurance, road tax, maintenance & Concierge included</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>✓</span>
+                  <span>No down payment and approval in 24 hours</span>
+                </div>
+              </div>
+
+              <div style={{
+                display: 'flex',
+                gap: '32px',
+                marginBottom: '40px',
+                flexWrap: 'wrap'
+              }}>
+                <div>
+                  <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>2,000+</div>
+                  <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>happy customers</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>4.6 ⭐</div>
+                  <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Google Reviews</div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => navigate('/cars')}
+                style={{
+                  padding: '18px 40px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  background: 'var(--primary)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--primary-hover)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'var(--primary)'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}
+              >
+                Browse Cars
+              </button>
+            </div>
+
+            {/* Right Hero Image */}
+            <div style={{
+              display: window.innerWidth >= 768 ? 'block' : 'none',
+              position: 'relative'
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800"
+                alt="Luxury Limousine"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.15)'
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -165,7 +217,7 @@ const Home = () => {
             letterSpacing: '1px',
             textTransform: 'uppercase'
           }}>
-            As Featured In
+            As featured in
           </h3>
           <div style={{
             display: 'flex',
@@ -189,7 +241,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Your Subscription Includes */}
+      {/* Your Subscription Includes with Car Image */}
       <section
         ref={addToRefs}
         data-section="subscription"
@@ -198,71 +250,96 @@ const Home = () => {
           background: 'var(--bg-main)',
           ...getSectionStyle('subscription')
         }}>
-        <div className="container">
-          <h2 style={{
-            fontSize: 'clamp(32px, 5vw, 42px)',
-            fontWeight: '800',
-            textAlign: 'center',
-            marginBottom: '64px',
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.02em'
-          }}>
-            YOUR SUBSCRIPTION INCLUDES
-          </h2>
-
+        <div className="container" style={{ maxWidth: '1400px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '32px',
-            maxWidth: '1000px',
-            margin: '0 auto'
+            gridTemplateColumns: window.innerWidth >= 1024 ? '1fr 1fr' : '1fr',
+            gap: '64px',
+            alignItems: 'center'
           }}>
-            {[
-              'Comprehensive insurance',
-              'Road tax',
-              'Maintenance',
-              'Tyres & brakes',
-              'Ability to swap cars',
-              'Door-to-door service',
-              'Concierge delivery'
-            ].map((item, idx) => (
-              <div key={idx} style={{
-                padding: '24px',
-                textAlign: 'center',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border)',
-                borderRadius: '12px',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)'
-                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.08)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
+            {/* Left - Features Grid */}
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(32px, 5vw, 42px)',
+                fontWeight: '800',
+                marginBottom: '64px',
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em'
               }}>
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  background: 'var(--primary)',
-                  margin: '0 auto 16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontSize: '20px'
-                }}>✓</div>
-                <p style={{
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)'
-                }}>
-                  {item}
-                </p>
+                Your subscription includes
+              </h2>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '32px'
+              }}>
+                {[
+                  'Comprehensive insurance',
+                  'Road tax',
+                  'Maintenance',
+                  'Tyres & brakes',
+                  'Ability to swap cars',
+                  'Door-to-door service',
+                  'Concierge delivery'
+                ].map((item, idx) => (
+                  <div key={idx} style={{
+                    padding: '24px',
+                    textAlign: 'center',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '12px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)'
+                    e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.08)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}>
+                    <div style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      background: 'var(--primary)',
+                      margin: '0 auto 16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontSize: '20px'
+                    }}>✓</div>
+                    <p style={{
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      color: 'var(--text-primary)'
+                    }}>
+                      {item}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right - Car Image */}
+            <div style={{
+              display: window.innerWidth >= 1024 ? 'flex' : 'none',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1563720223809-4e4c00bbe058?w=600"
+                alt="Luxury Car Interior"
+                style={{
+                  width: '100%',
+                  maxWidth: '500px',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -285,7 +362,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            HOW CARBNB WORKS
+            How CarBnb works
           </h2>
 
           <div style={{
@@ -375,7 +452,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Popular Limousines */}
+      {/* Popular Limousines with Carousel */}
       <section
         ref={addToRefs}
         data-section="popularCars"
@@ -393,7 +470,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            POPULAR LIMOUSINE MODELS
+            Popular limousine models
           </h2>
           <p style={{
             textAlign: 'center',
@@ -404,55 +481,150 @@ const Home = () => {
             From Mercedes S-Class to Rolls-Royce Phantom, we have a limousine for every occasion.
           </p>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '32px',
-            marginBottom: '48px'
-          }}>
-            {[
-              { name: 'MERCEDES-BENZ S-CLASS 2024', price: 'RM 7,200', image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400' },
-              { name: 'BMW 7-SERIES 2024', price: 'RM 6,800', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400' },
-              { name: 'ROLLS-ROYCE PHANTOM 2024', price: 'RM 13,500', image: 'https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=400' },
-              { name: 'MAYBACH S-CLASS 2024', price: 'RM 11,700', image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400' },
-              { name: 'BENTLEY FLYING SPUR 2024', price: 'RM 12,600', image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=400' },
-              { name: 'STRETCHED LINCOLN 2023', price: 'RM 10,800', image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400' }
-            ].map((car, idx) => (
-              <div
-                key={idx}
-                onClick={() => navigate('/cars')}
-                style={{
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)'
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = 'none'
-                }}
-              >
-                <img src={car.image} alt={car.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-                <div style={{ padding: '20px' }}>
-                  <h3 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    {car.name}
-                  </h3>
-                  <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '12px' }}>from</p>
-                  <p style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>
-                    {car.price}<span style={{ fontSize: '14px', fontWeight: '500', color: 'var(--text-secondary)' }}>/month</span>
-                  </p>
-                </div>
+          {/* Carousel Container */}
+          <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+            {/* Carousel Track */}
+            <div style={{ overflow: 'hidden', borderRadius: '12px' }}>
+              <div style={{
+                display: 'flex',
+                transform: `translateX(-${carouselIndex * 100}%)`,
+                transition: 'transform 0.5s ease-in-out'
+              }}>
+                {Array.from({ length: totalPages }).map((_, pageIndex) => (
+                  <div
+                    key={pageIndex}
+                    style={{
+                      minWidth: '100%',
+                      display: 'grid',
+                      gridTemplateColumns: `repeat(${itemsPerPage}, 1fr)`,
+                      gap: '32px',
+                      padding: '0 8px'
+                    }}
+                  >
+                    {cars.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage).map((car, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => navigate('/cars')}
+                        style={{
+                          background: 'var(--bg-card)',
+                          border: '1px solid var(--border)',
+                          borderRadius: '12px',
+                          overflow: 'hidden',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-8px)'
+                          e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)'
+                          e.currentTarget.style.boxShadow = 'none'
+                        }}
+                      >
+                        <img src={car.image} alt={car.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                        <div style={{ padding: '20px' }}>
+                          <h3 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                            {car.name}
+                          </h3>
+                          <p style={{ fontSize: '12px', color: 'var(--text-tertiary)', marginBottom: '12px' }}>from</p>
+                          <p style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>
+                            {car.price}<span style={{ fontSize: '14px', fontWeight: '500', color: 'var(--text-secondary)' }}>/month</span>
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              style={{
+                position: 'absolute',
+                left: '-20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'white',
+                border: '1px solid var(--border)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '24px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--bg-hover)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'white'
+              }}
+            >
+              ‹
+            </button>
+            <button
+              onClick={nextSlide}
+              style={{
+                position: 'absolute',
+                right: '-20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'white',
+                border: '1px solid var(--border)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '24px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--bg-hover)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'white'
+              }}
+            >
+              ›
+            </button>
+          </div>
+
+          {/* Carousel Dots */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '12px',
+            marginTop: '32px'
+          }}>
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                style={{
+                  width: '12px',
+                  height: '12px',
+                  borderRadius: '50%',
+                  border: 'none',
+                  background: carouselIndex === idx ? 'var(--primary)' : 'var(--border)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              />
             ))}
           </div>
 
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginTop: '48px' }}>
             <button
               onClick={() => navigate('/cars')}
               style={{
@@ -502,7 +674,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            CONVENIENCE + FLEXIBILITY
+            Convenience + Flexibility
           </h2>
           <p style={{
             textAlign: 'center',
@@ -583,7 +755,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            SAVE TIME, SAVE MONEY
+            Save time, save money
           </h2>
 
           <div style={{
@@ -596,38 +768,52 @@ const Home = () => {
             {[
               {
                 title: "We've got you covered",
-                description: "Our Concierge staff takes care of all the hassle; from road tax and insurance renewals to pick up and delivery for servicing."
+                description: "Our Concierge staff takes care of all the hassle; from road tax and insurance renewals to pick up and delivery for servicing.",
+                image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400"
               },
               {
                 title: "No Down Payment & No Interest",
-                description: "With CarBnb there are no loans, no high upfront payments and no interest fees. Enjoy debt-free driving on your terms."
+                description: "With CarBnb there are no loans, no high upfront payments and no interest fees. Enjoy debt-free driving on your terms.",
+                image: "https://images.unsplash.com/photo-1554224311-beee460ae6ba?w=400"
               },
               {
                 title: "Swap whenever",
-                description: "You don't need multiple cars in your garage, just one CarBnb subscription. Swap cars whenever your needs change."
+                description: "You don't need multiple cars in your garage, just one CarBnb subscription. Swap cars whenever your needs change.",
+                image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400"
               }
             ].map((item, idx) => (
               <div key={idx} style={{
-                padding: '40px',
                 background: 'var(--bg-card)',
                 border: '1px solid var(--border)',
-                borderRadius: '12px'
+                borderRadius: '12px',
+                overflow: 'hidden'
               }}>
-                <h3 style={{
-                  fontSize: '24px',
-                  fontWeight: '700',
-                  marginBottom: '16px',
-                  color: 'var(--text-primary)'
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.7'
-                }}>
-                  {item.description}
-                </p>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={{
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'cover'
+                  }}
+                />
+                <div style={{ padding: '32px' }}>
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    marginBottom: '16px',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {item.title}
+                  </h3>
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'var(--text-secondary)',
+                    lineHeight: '1.7'
+                  }}>
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -639,29 +825,54 @@ const Home = () => {
         ref={addToRefs}
         data-section="saveBanner"
         style={{
-          padding: '80px 24px',
-          background: 'var(--primary)',
-          color: 'white',
-          textAlign: 'center',
+          padding: '100px 24px',
+          background: 'var(--bg-main)',
           ...getSectionStyle('saveBanner')
         }}>
-        <div className="container">
-          <h2 style={{
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            fontWeight: '900',
-            marginBottom: '16px',
-            letterSpacing: '-0.02em'
+        <div className="container" style={{ maxWidth: '1200px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: window.innerWidth >= 768 ? '1fr 1fr' : '1fr',
+            gap: '48px',
+            alignItems: 'center',
+            background: 'var(--primary)',
+            borderRadius: '16px',
+            padding: '60px',
+            color: 'white'
           }}>
-            SAVE UP TO 33% IN THE 1ST YEAR
-          </h2>
-          <p style={{
-            fontSize: '20px',
-            opacity: 0.9,
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            Never pay for insurance, maintenance or tyres ever again. CarBnb prices are all-inclusive so you can enjoy maximum savings.
-          </p>
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(32px, 5vw, 48px)',
+                fontWeight: '900',
+                marginBottom: '16px',
+                letterSpacing: '-0.02em'
+              }}>
+                Save up to 33% in the 1st year
+              </h2>
+              <p style={{
+                fontSize: '18px',
+                opacity: 0.9,
+                lineHeight: '1.6'
+              }}>
+                Never pay for insurance, maintenance or tyres ever again. CarBnb prices are all-inclusive so you can enjoy maximum savings.
+              </p>
+            </div>
+            <div style={{
+              display: window.innerWidth >= 768 ? 'flex' : 'none',
+              justifyContent: 'center'
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=500"
+                alt="Savings"
+                style={{
+                  width: '100%',
+                  maxWidth: '400px',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -683,7 +894,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            WHAT OUR SUBSCRIBERS SAY
+            What our subscribers say
           </h2>
 
           <div style={{
@@ -774,7 +985,7 @@ const Home = () => {
         ref={addToRefs}
         data-section="faq"
         style={{
-          padding: '100px 24px 150px',
+          padding: '100px 24px',
           background: 'var(--bg-main)',
           ...getSectionStyle('faq')
         }}>
@@ -787,7 +998,7 @@ const Home = () => {
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            FREQUENTLY ASKED QUESTIONS
+            Frequently Asked Questions
           </h2>
 
           <div style={{
@@ -852,6 +1063,61 @@ const Home = () => {
               View More
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section
+        ref={addToRefs}
+        data-section="finalCTA"
+        style={{
+          padding: '100px 24px 150px',
+          background: 'var(--bg-elevated)',
+          textAlign: 'center',
+          ...getSectionStyle('finalCTA')
+        }}>
+        <div className="container">
+          <h2 style={{
+            fontSize: 'clamp(36px, 6vw, 64px)',
+            fontWeight: '900',
+            marginBottom: '32px',
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.02em',
+            lineHeight: '1.2'
+          }}>
+            Love it. Drive it. <span style={{ fontStyle: 'italic' }}>CarBnb it.</span>
+          </h2>
+
+          <button
+            onClick={() => navigate('/cars')}
+            style={{
+              padding: '20px 48px',
+              fontSize: '18px',
+              fontWeight: '700',
+              background: 'var(--primary)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontFamily: 'Inter, sans-serif',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--primary-hover)'
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--primary)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)'
+            }}
+          >
+            Browse Cars
+          </button>
         </div>
       </section>
     </div>
