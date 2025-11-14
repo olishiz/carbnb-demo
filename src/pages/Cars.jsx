@@ -959,8 +959,8 @@ const Cars = () => {
                           // Simulate payment processing
                           await new Promise(resolve => setTimeout(resolve, 2000))
 
-                          // Show success
-                          Swal.fire({
+                          // Show success and wait for user to dismiss
+                          await Swal.fire({
                             icon: 'success',
                             title: 'Booking Confirmed!',
                             html: `<div style="text-align: center; padding: 10px;">
@@ -975,6 +975,7 @@ const Cars = () => {
                             }
                           })
 
+                          // Close modal after user dismisses the alert
                           setSelectedLimo(null)
                           setShowBooking(false)
                           setBookingStep(1)
