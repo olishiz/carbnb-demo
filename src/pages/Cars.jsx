@@ -704,13 +704,43 @@ const Cars = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                     <button
                       className="btn btn-primary"
-                      style={{ flex: 1, fontSize: '16px', padding: '16px' }}
-                      onClick={() => setShowBooking(true)}
+                      style={{ flex: 1, minWidth: '200px', fontSize: '16px', padding: '16px' }}
+                      onClick={() => {
+                        setShowBooking(true)
+                        setBookingStep(1)
+                      }}
                     >
                       Book Now
+                    </button>
+                    <button
+                      className="btn"
+                      style={{
+                        flex: 1,
+                        minWidth: '200px',
+                        fontSize: '16px',
+                        padding: '16px',
+                        background: 'linear-gradient(135deg, #635BFF 0%, #0A2540 100%)',
+                        color: 'white',
+                        border: 'none',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onClick={() => {
+                        setShowBooking(true)
+                        setBookingStep(3)
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)'
+                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(99, 91, 255, 0.4)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)'
+                        e.currentTarget.style.boxShadow = 'none'
+                      }}
+                    >
+                      ⚡ Quick Book
                     </button>
                     <button
                       className="btn btn-secondary"
@@ -876,6 +906,40 @@ const Cars = () => {
 
                 {bookingStep === 3 && (
                   <div>
+                    {/* Stripe Payment Header */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '16px 20px',
+                      background: 'linear-gradient(135deg, #635BFF 0%, #0A2540 100%)',
+                      borderRadius: '12px',
+                      marginBottom: '24px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          color: 'white'
+                        }}>
+                          Secure Payment powered by
+                        </div>
+                        <svg width="60" height="25" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <text x="0" y="20" fill="white" fontSize="20" fontWeight="700" fontFamily="system-ui">Stripe</text>
+                        </svg>
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '13px',
+                        color: 'rgba(255,255,255,0.9)'
+                      }}>
+                        <span>🔒</span>
+                        <span>256-bit SSL Encrypted</span>
+                      </div>
+                    </div>
+
                     <div style={{
                       background: 'var(--bg-elevated)',
                       padding: '20px',

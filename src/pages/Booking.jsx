@@ -518,6 +518,42 @@ const Booking = () => {
                 Payment Details
               </h2>
 
+              {/* Stripe Payment Header */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '16px 20px',
+                background: 'linear-gradient(135deg, #635BFF 0%, #0A2540 100%)',
+                borderRadius: '12px',
+                marginBottom: '24px',
+                flexWrap: 'wrap',
+                gap: '12px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <div style={{
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    color: 'white'
+                  }}>
+                    Secure Payment powered by
+                  </div>
+                  <svg width="60" height="25" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="20" fill="white" fontSize="20" fontWeight="700" fontFamily="system-ui">Stripe</text>
+                  </svg>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '13px',
+                  color: 'rgba(255,255,255,0.9)'
+                }}>
+                  <span>🔒</span>
+                  <span>256-bit SSL Encrypted</span>
+                </div>
+              </div>
+
               {/* Order Summary */}
               <div style={{
                 padding: '24px',
