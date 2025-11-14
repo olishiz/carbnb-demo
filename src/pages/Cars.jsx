@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import DatePicker from '../components/DatePicker'
+import VirtualTour from '../components/VirtualTour'
 import Swal from 'sweetalert2'
 import { limousines, calculatePrice } from '../data/limousines'
+import { useCompare } from '../context/CompareContext'
+import { Plus, Eye } from 'lucide-react'
 
 const Cars = () => {
   const [filter, setFilter] = useState('all')
@@ -12,6 +15,36 @@ const Cars = () => {
   const [showBooking, setShowBooking] = useState(false)
   const [bookingStep, setBookingStep] = useState(1) // 1: details, 2: personal info, 3: payment
   const [startDate, setStartDate] = useState(null)
+  const [showVirtualTour, setShowVirtualTour] = useState(null)
+  const { addToCompare, isInCompare } = useCompare()
+
+  const handleAddToCompare = (car, e) => {
+    e.stopPropagation()
+    const result = addToCompare(car)
+    if (result.success) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Added to Comparison',
+        text: `${car.name} has been added to comparison`,
+        timer: 2000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end'
+      })
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Cannot Add',
+        text: result.message,
+        confirmButtonColor: '#000000'
+      })
+    }
+  }
+
+  const handleVirtualTour = (car, e) => {
+    e.stopPropagation()
+    setShowVirtualTour(car)
+  }
 
   const filteredLimousines = limousines
     .filter(limo => filter === 'all' || limo.category.includes(filter))
@@ -272,6 +305,81 @@ const Cars = () => {
                       +{limo.features.length - 3} more
                     </span>
                   )}
+                </div>
+
+                {/* Action Buttons */}
+                <div style={{
+                  display: 'flex',
+                  gap: '8px',
+                  marginBottom: '16px'
+                }}>
+                  <button
+                    onClick={(e) => handleAddToCompare(limo, e)}
+                    disabled={isInCompare(limo.id)}
+                    style={{
+                      flex: 1,
+                      padding: '10px 16px',
+                      fontSize: '13px',
+                      fontWeight: '600',
+                      background: isInCompare(limo.id) ? 'var(--bg-elevated)' : 'transparent',
+                      color: isInCompare(limo.id) ? 'var(--text-tertiary)' : 'var(--text-primary)',
+                      border: `1.5px solid ${isInCompare(limo.id) ? 'var(--border)' : 'var(--primary)'}`,
+                      borderRadius: '8px',
+                      cursor: isInCompare(limo.id) ? 'not-allowed' : 'pointer',
+                      fontFamily: 'Inter, sans-serif',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isInCompare(limo.id)) {
+                        e.currentTarget.style.background = 'var(--primary)'
+                        e.currentTarget.style.color = 'white'
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isInCompare(limo.id)) {
+                        e.currentTarget.style.background = 'transparent'
+                        e.currentTarget.style.color = 'var(--text-primary)'
+                      }
+                    }}
+                  >
+                    <Plus size={16} />
+                    {isInCompare(limo.id) ? 'Added' : 'Compare'}
+                  </button>
+                  <button
+                    onClick={(e) => handleVirtualTour(limo, e)}
+                    style={{
+                      flex: 1,
+                      padding: '10px 16px',
+                      fontSize: '13px',
+                      fontWeight: '600',
+                      background: 'transparent',
+                      color: 'var(--text-primary)',
+                      border: '1.5px solid var(--primary)',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontFamily: 'Inter, sans-serif',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--primary)'
+                      e.currentTarget.style.color = 'white'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent'
+                      e.currentTarget.style.color = 'var(--text-primary)'
+                    }}
+                  >
+                    <Eye size={16} />
+                    360° Tour
+                  </button>
                 </div>
 
                 {/* Price and CTA */}
@@ -882,6 +990,15 @@ const Cars = () => {
             )}
           </div>
         </div>
+      )}
+
+      {/* Virtual Tour Modal */}
+      {showVirtualTour && (
+        <VirtualTour
+          tourUrl={showVirtualTour.virtualTour}
+          carName={showVirtualTour.name}
+          onClose={() => setShowVirtualTour(null)}
+        />
       )}
     </section>
   )

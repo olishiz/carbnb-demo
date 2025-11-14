@@ -11,6 +11,7 @@ export const limousines = [
       'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200',
       'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200'
     ],
+    virtualTour: 'https://pannellum.org/images/cerro-toco-0.jpg',
     features: ['Professional Chauffeur', 'WiFi Connectivity', 'Premium Audio System', 'Climate Control', 'Leather Seats', 'Ambient Lighting'],
     capacity: 4,
     year: 2024,
@@ -39,6 +40,7 @@ export const limousines = [
   },
   {
     id: 3,
+    virtualTour: 'https://pannellum.org/images/bma-0.jpg',
     name: 'Stretched Lincoln Limousine',
     category: ['wedding', 'events'],
     basePrice: 12000,
@@ -58,6 +60,7 @@ export const limousines = [
   },
   {
     id: 4,
+    virtualTour: 'https://pannellum.org/images/bma-1.jpg',
     name: 'Rolls-Royce Phantom',
     category: ['wedding', 'business'],
     basePrice: 15000,
@@ -77,6 +80,7 @@ export const limousines = [
   },
   {
     id: 5,
+    virtualTour: 'https://pannellum.org/images/bma-2.jpg',
     name: 'Maybach S-Class',
     category: ['business', 'events'],
     basePrice: 13000,
@@ -96,6 +100,7 @@ export const limousines = [
   },
   {
     id: 6,
+    virtualTour: 'https://pannellum.org/images/bma-3.jpg',
     name: 'Bentley Flying Spur',
     category: ['business', 'wedding'],
     basePrice: 14000,
@@ -115,6 +120,7 @@ export const limousines = [
   },
   {
     id: 7,
+    virtualTour: 'https://pannellum.org/images/bma-4.jpg',
     name: 'Cadillac Escalade ESV',
     category: ['events', 'business'],
     basePrice: 9500,
@@ -134,6 +140,7 @@ export const limousines = [
   },
   {
     id: 8,
+    virtualTour: 'https://pannellum.org/images/bma-5.jpg',
     name: 'Audi A8 L',
     category: ['business'],
     basePrice: 8500,
@@ -153,6 +160,7 @@ export const limousines = [
   },
   {
     id: 9,
+    virtualTour: 'https://pannellum.org/images/cerro-toco-1.jpg',
     name: 'Lexus LS 500h',
     category: ['business', 'events'],
     basePrice: 7800,
@@ -172,6 +180,7 @@ export const limousines = [
   },
   {
     id: 10,
+    virtualTour: 'https://pannellum.org/images/alma.jpg',
     name: 'Range Rover Autobiography',
     category: ['events', 'business'],
     basePrice: 10500,
@@ -191,6 +200,7 @@ export const limousines = [
   },
   {
     id: 11,
+    virtualTour: 'https://pannellum.org/images/jfk.jpg',
     name: 'Genesis G90',
     category: ['business'],
     basePrice: 7200,
@@ -210,6 +220,7 @@ export const limousines = [
   },
   {
     id: 12,
+    virtualTour: 'https://pannellum.org/images/jfk-half.jpg',
     name: 'Maserati Quattroporte',
     category: ['business', 'events'],
     basePrice: 11500,
