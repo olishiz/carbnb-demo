@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import DatePicker from '../components/DatePicker'
 import VirtualTour from '../components/VirtualTour'
 import Swal from 'sweetalert2'
@@ -7,6 +8,7 @@ import { useCompare } from '../context/CompareContext'
 import { Plus, Eye } from 'lucide-react'
 
 const Cars = () => {
+  const navigate = useNavigate()
   const [filter, setFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLimo, setSelectedLimo] = useState(null)
@@ -709,38 +711,10 @@ const Cars = () => {
                       className="btn btn-primary"
                       style={{ flex: 1, minWidth: '200px', fontSize: '16px', padding: '16px' }}
                       onClick={() => {
-                        setShowBooking(true)
-                        setBookingStep(1)
+                        navigate(`/booking/${selectedLimo.id}`)
                       }}
                     >
                       Book Now
-                    </button>
-                    <button
-                      className="btn"
-                      style={{
-                        flex: 1,
-                        minWidth: '200px',
-                        fontSize: '16px',
-                        padding: '16px',
-                        background: 'linear-gradient(135deg, #635BFF 0%, #0A2540 100%)',
-                        color: 'white',
-                        border: 'none',
-                        transition: 'all 0.2s ease'
-                      }}
-                      onClick={() => {
-                        setShowBooking(true)
-                        setBookingStep(3)
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-2px)'
-                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(99, 91, 255, 0.4)'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)'
-                        e.currentTarget.style.boxShadow = 'none'
-                      }}
-                    >
-                      ⚡ Quick Book
                     </button>
                     <button
                       className="btn btn-secondary"

@@ -34,7 +34,7 @@ const BottomNav = () => {
     {
       id: 'account',
       label: 'Account',
-      action: () => alert('Account feature coming soon!'),
+      path: '/account',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>

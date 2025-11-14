@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.81.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.553.0",
     "pannellum": "^2.5.6",

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { User } from 'lucide-react'
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const { user } = useAuth()
 
   const handleHomeScroll = (sectionId) => {
     if (location.pathname !== '/') {
@@ -33,6 +36,19 @@ const Header = () => {
             <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
+            <Link to="/account" style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              background: user ? 'var(--bg-card)' : 'transparent',
+              border: user ? '1px solid var(--border)' : 'none',
+              transition: 'all 0.2s ease'
+            }}>
+              <User size={18} />
+              {user ? 'Account' : 'Sign In'}
+            </Link>
             <button className="btn btn-primary" onClick={() => navigate('/booking')}>
               Get Started
             </button>
@@ -79,6 +95,20 @@ const Header = () => {
             <a href="#how-it-works" onClick={(e) => { e.preventDefault(); handleHomeScroll('how-it-works') }}>
               How It Works
             </a>
+            <Link to="/account" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              justifyContent: 'center',
+              padding: '12px',
+              background: user ? 'var(--bg-card)' : 'transparent',
+              border: user ? '1px solid var(--border)' : 'none',
+              borderRadius: '8px',
+              margin: '8px 0'
+            }}>
+              <User size={18} />
+              {user ? 'Account' : 'Sign In'}
+            </Link>
             <button className="btn btn-primary" onClick={() => { navigate('/booking'); setMobileMenuOpen(false) }} style={{ width: '100%' }}>
               Get Started
             </button>
