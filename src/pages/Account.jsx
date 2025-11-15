@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { User, Mail, Lock, LogOut, Calendar, Car } from 'lucide-react'
+import { isSupabaseConfigured } from '../lib/supabase'
+import { User, Mail, Lock, LogOut, Calendar, Car, AlertCircle } from 'lucide-react'
 import Swal from 'sweetalert2'
 
 const Account = () => {
   const { user, signUp, signIn, signOut, updateProfile } = useAuth()
   const [isLogin, setIsLogin] = useState(true)
   const [loading, setLoading] = useState(false)
+  const supabaseConfigured = isSupabaseConfigured()
 
   // Auth form state
   const [email, setEmail] = useState('')
@@ -144,6 +146,40 @@ const Account = () => {
         padding: '80px 20px 100px',
         background: 'var(--bg-primary)'
       }}>
+        {/* Supabase Setup Warning */}
+        {!supabaseConfigured && (
+          <div style={{
+            maxWidth: '450px',
+            margin: '0 auto 20px',
+            background: '#FFF3CD',
+            border: '1px solid #FFE69C',
+            borderRadius: '12px',
+            padding: '16px 20px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '12px'
+          }}>
+            <AlertCircle size={20} color="#856404" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div>
+              <p style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#856404',
+                marginBottom: '6px'
+              }}>
+                Supabase Not Configured
+              </p>
+              <p style={{
+                fontSize: '13px',
+                color: '#856404',
+                lineHeight: '1.5'
+              }}>
+                Authentication is currently disabled. To enable login functionality, please follow the setup instructions in <strong>SUPABASE_SETUP.md</strong>
+              </p>
+            </div>
+          </div>
+        )}
+
         <div style={{
           maxWidth: '450px',
           margin: '0 auto',
